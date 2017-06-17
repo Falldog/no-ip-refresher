@@ -2,7 +2,7 @@ FROM selenium/standalone-firefox:3.4.0
 LABEL authors=Falldog
 
 RUN sudo mkdir -p /code \
-    sudo chown seluser /code
+    && sudo chown seluser /code
 
 COPY requirement.txt /code/requirement.txt
 RUN sudo apt-get update -qqy \
