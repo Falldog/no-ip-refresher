@@ -5,8 +5,13 @@ RUN sudo mkdir -p /code \
     && sudo chown seluser /code
 
 COPY requirement.txt /code/requirement.txt
-RUN sudo apt-get update -qqy \
-    && sudo apt-get install -qqy python3-pip \
+
+RUN set -ex \
+    && sudo apt-get update \
+    && sudo apt-get install -y --no-install-recommends \
+        python3-pip \
+	&& sudo rm -rf /var/lib/apt/lists/* \
+    \
     && sudo pip3 install -r /code/requirement.txt
 
 WORKDIR /code
